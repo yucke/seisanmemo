@@ -1,0 +1,17 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0
+description: SalesForce
+author: Sales Force
+license: See LICENSE file
+copyright: Copyright (c) 2011 by Sales Force inc
+
+
+# these should not be edited
+name: salesforce
+moduleid: com.salesforce
+guid: f2d8039e-0416-443b-96af-aa67ca6f61a2
+platform: iphone
+minsdk: 1.7.2
