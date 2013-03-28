@@ -40,11 +40,11 @@ function loadData(){
 		kingaku : 0,
 		biko : ''
 	};
+	var　mod = require('modules');
 	var row = mod.row(items);
 	row.title = '新規';
 	tableData.push(row);
 	var db = require('db'),
-	mod = require('modules');
 	items = db.selectItems();
 	for (var i = 0; i < items.length; i++) {
 		row = mod.row(items[i]);
