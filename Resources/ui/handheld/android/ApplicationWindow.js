@@ -38,10 +38,10 @@ function ApplicationWindow() {
 						cancel : function() {
 							alert('cancel');
 						}
-					})
+					});
 
 				};
-			})
+			});
 			dialog.show();
 		});
 
