@@ -1,20 +1,19 @@
 function DetailView() {
-	var id, 
-	 mod = require('modules'), 
-	 self = mod.scview(), 
-	 texts = new Array('日付', '行先', '交通手段', 'FROM', 'TO', '金額', '備考'),
-	 fields = new Array(7);
-	var i = 0;
-	do {
+	var id,
+	mod = require('modules'),
+	self = mod.scview(),
+	texts = new Array('日付', '行先', '交通手段', 'FROM', 'TO', '金額', '備考'),
+	fields = new Array(7);
+    for (var i = 0; i < 6; i++) {
 		var row = mod.rowview();
 		var label = mod.lbl(texts[i]);
 		fields[i] = mod.textField1(texts[i]);
-		fields[5] = mod.textField2(texts[5]);
+		if ( i == 5)
+			fields[i] = mod.textField2(texts[5]);
 		row.add(label);
 		row.add(fields[i]);
 		self.add(row);
-		i++;
-	} while (i < 6);
+	}
 
 	fields[6] = mod.textArea(texts[6]);
 	self.add(fields[6]);
@@ -42,7 +41,7 @@ function DetailView() {
 					require('db').addItem(item);
 					self.fireEvent('updateList', {});
 				}
-				
+
 			});
 
 		} else {

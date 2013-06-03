@@ -1,7 +1,7 @@
 function ApplicationWindow() {
 	//declare module dependencies
-	var MasterView = require('ui/common/MasterView'),
-	    DetailView = require('ui/common/DetailView');
+	var MasterView = require('ui/common/MasterView'), DetailView = require('ui/common/DetailView'), Batch = require('ui/common/Batch');
+	;
 
 	//create object instance
 	var self = Ti.UI.createWindow({
@@ -10,6 +10,42 @@ function ApplicationWindow() {
 		navBarHidden : false,
 		backgroundColor : '#ffffff'
 	});
+	var activity = self.activity;
+	activity.onCreateOptionsMenu = function(e) {
+
+		var menu = e.menu;
+		var menuItem = menu.add({
+			title : "Item 1",
+			icon : "item1.png"
+		});
+
+		menuItem.addEventListener("click", function(e) {
+			var dialog = Titanium.UI.createOptionDialog();
+			dialog.setTitle('Salesforce.com連携しますか？');
+			dialog.setOptions(["OK", "CANCEL"]);
+
+			dialog.addEventListener('click', function(event) {
+
+				if (event.index == 0) {
+					var force = require('force');
+					force.authorize({
+						success : function() {
+							var Batch = require('ui/common/Batch').renkei();
+						},
+						error : function() {
+							alert('認証エラー');
+						},
+						cancel : function() {
+							alert('cancel');
+						}
+					})
+
+				};
+			})
+			dialog.show();
+		});
+
+	};
 
 	//construct UI
 	var masterView = new MasterView();
