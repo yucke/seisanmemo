@@ -1,15 +1,15 @@
 var force = require('force');
 exports.renkei = function() {
-	Ti.API.info(Ti.App.Properties.getString('force.id'));
-	force.request({
-		type : 'GET',
-		url : '/query/?q=' + Ti.Network.encodeURIComponent('SELECT Id, FirstName, LastName, Alias, Username FROM User'), //inlining SOQL query
+	var str = Ti.App.Properties.getString('force.id');
+	var id = str.substring((str.lastIndexOf('/005') + 1), str.length);
+
+	force.user({
 		callback : function(data) {
-			var rows = [];
 			for (var i = 0, l = data.records.length; i < l; i++) {
 				var rec = data.records[i];
-				//Ti.API.info(rec.LastName);
+				Ti.API.info(rec);
 			}
 		}
 	});
+
 }

@@ -28,6 +28,7 @@ function ApplicationWindow() {
 
 				if (event.index == 0) {
 					var force = require('force');
+					
 					force.authorize({
 						success : function() {
 							var Batch = require('ui/common/Batch').renkei();
