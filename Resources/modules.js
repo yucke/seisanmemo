@@ -120,8 +120,8 @@ exports.date = function date(_args) {
     // turn on the selection indicator (off by default)
     picker.selectionIndicator = true;
     
-    win.add(picker);
-    
+    return picker;
+   /*
     var label = Ti.UI.createLabel({
         text:'Choose a date',
         top:6,
@@ -157,4 +157,5 @@ exports.date = function date(_args) {
     win.add(localebutton);
     
     return win;
+    */
 }
