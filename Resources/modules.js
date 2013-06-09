@@ -99,7 +99,7 @@ exports.row = function(_item) {
 exports.date = function date(_args) {
 
     var minDate = new Date();
-    minDate.setFullYear(2010);
+    minDate.setFullYear(2005);
     minDate.setMonth(1);
     minDate.setDate(1);
     
