@@ -97,24 +97,18 @@ exports.row = function(_item) {
 };
 
 exports.date = function date(_args) {
-    var win = Ti.UI.createWindow({
-        title:_args.title
-    });
 
     var minDate = new Date();
-    minDate.setFullYear(2009);
-    minDate.setMonth(0);
+    minDate.setFullYear(2010);
+    minDate.setMonth(1);
     minDate.setDate(1);
     
     var maxDate = new Date();
-    maxDate.setFullYear(2009);
-    maxDate.setMonth(11);
+    maxDate.setFullYear(2013);
+    maxDate.setMonth(12);
     maxDate.setDate(31);
     
-    var value = new Date();
-    value.setFullYear(2009);
-    value.setMonth(0);
-    value.setDate(1);
+    var value = new Date(_args);
     
     var picker = Ti.UI.createPicker({
         type:Ti.UI.PICKER_TYPE_DATE,
