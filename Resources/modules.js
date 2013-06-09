@@ -111,7 +111,7 @@ exports.date = function date(_args) {
     var value = new Date(_args);
     
     var picker = Ti.UI.createPicker({
-        type:Ti.UI.PICKER_TYPE_DATE,
+       // type:Ti.UI.PICKER_TYPE_DATE,
         minDate:minDate,
         maxDate:maxDate,
         value:value
