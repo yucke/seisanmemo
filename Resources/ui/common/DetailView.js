@@ -16,6 +16,7 @@ function DetailView() {
 	}
 
 	fields[6] = mod.textArea(texts[6]);
+	fields[1] = mod.date();
 	self.add(fields[6]);
 
 	var bt1 = mod.button('登録');
