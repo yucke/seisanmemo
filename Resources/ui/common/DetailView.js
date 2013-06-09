@@ -16,7 +16,7 @@ function DetailView() {
 	}
 
 	fields[6] = mod.textArea(texts[6]);
-	fields[1] = mod.date("20090829");
+	fields[1] = mod.date(texts[1]);
 	self.add(fields[6]);
     self.add(fields[1]);
 
