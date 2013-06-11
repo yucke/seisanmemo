@@ -96,7 +96,7 @@ exports.row = function(_item) {
 	return self;
 };
 
-exports.date = function date(_date) {
+exports.date = function date() {
 
     var minDate = new Date();
     minDate.setFullYear(2009);

@@ -8,8 +8,6 @@ function DetailView() {
 		var row = mod.rowview();
 		var label = mod.lbl(texts[i]);
 		fields[i] = mod.textField1(texts[i]);
-//		if ( i == 0)
-//		    fields[i] = mod.date(texts[0]);
 		if ( i == 5)
 			fields[i] = mod.textField2(texts[5]);
 		row.add(label);
@@ -69,7 +67,7 @@ function DetailView() {
 
 	self.addEventListener('itemSelected', function(e) {
 		id = e.selData.id;
-		fields[0].value = e.selData.date;
+		fields[0].value = mod.date()//e.selData.date;
 		fields[1].value = e.selData.ikisaki;
 		fields[2].value = e.selData.shudan;
 		fields[3].value = e.selData.from;
