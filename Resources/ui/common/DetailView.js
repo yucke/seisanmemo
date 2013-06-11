@@ -8,17 +8,16 @@ function DetailView() {
 		var row = mod.rowview();
 		var label = mod.lbl(texts[i]);
 		fields[i] = mod.textField1(texts[i]);
+		if ( i == 0)
+		    fields[i] = mod.date(texts[0]);
 		if ( i == 5)
 			fields[i] = mod.textField2(texts[5]);
 		row.add(label);
 		row.add(fields[i]);
 		self.add(row);
 	}
-
 	fields[6] = mod.textArea(texts[6]);
-	fields[1] = mod.date(texts[1]);
 	self.add(fields[6]);
-    self.add(fields[1]);
 
 	var bt1 = mod.button('登録');
 	bt1.addEventListener('click', function(e) {

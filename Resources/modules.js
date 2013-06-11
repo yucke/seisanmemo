@@ -96,66 +96,12 @@ exports.row = function(_item) {
 	return self;
 };
 
-exports.date = function date(_args) {
-
-    var minDate = new Date();
-    minDate.setFullYear(2005);
-    minDate.setMonth(1);
-    minDate.setDate(1);
-    
-    var maxDate = new Date();
-    maxDate.setFullYear(2013);
-    maxDate.setMonth(12);
-    maxDate.setDate(31);
-    
-    var value = new Date(_args);
-    
-    var picker = Ti.UI.createPicker({
-       // type:Ti.UI.PICKER_TYPE_DATE,
+exports.date = function date(_date) {
+    var self = Ti.UI.createPicker({
+        type:Ti.UI.PICKER_TYPE_DATE_AND_TIME,
         minDate:minDate,
         maxDate:maxDate,
         value:value
     });
-    
-    // turn on the selection indicator (off by default)
-    picker.selectionIndicator = true;
-    
-    return picker;
-   /*
-    var label = Ti.UI.createLabel({
-        text:'Choose a date',
-        top:6,
-        width:'auto',
-        height:'auto',
-        textAlign:'center',
-        color:'white'
-    });
-    win.add(label);
-    
-    picker.addEventListener('change',function(e)
-    {
-        label.text = e.value.toLocaleString();
-    });
-    
-    var locale = false;
-    var localebutton = Ti.UI.createButton({
-        title:'Change locale',
-        bottom:20,
-        width:200,
-        height:40
-    });
-    localebutton.addEventListener('click', function() {
-        if (!locale) {
-            picker.setLocale('ru');
-            locale = true;
-        }
-        else {
-            locale = false;
-            picker.setLocale(Titanium.Platform.locale);
-        }
-    });
-    win.add(localebutton);
-    
-    return win;
-    */
-}
+    return self;
+};
