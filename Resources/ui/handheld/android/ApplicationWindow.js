@@ -1,6 +1,6 @@
 function ApplicationWindow() {
 	//declare module dependencies
-	var MasterView = require('ui/common/MasterView'), DetailView = require('ui/common/DetailView'), Batch = require('ui/common/Batch');
+	var MasterView = require('ui/common/MasterView'), DetailView = require('ui/common/DetailView');
 	;
 
 	//create object instance
@@ -31,7 +31,7 @@ function ApplicationWindow() {
 					
 					force.authorize({
 						success : function() {
-							var Batch = require('ui/common/Batch').renkei();
+							require('ui/common/Batch').renkei();
 						},
 						error : function() {
 							alert('認証エラー');
