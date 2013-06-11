@@ -97,16 +97,16 @@ exports.row = function(_item) {
 };
 
 exports.date = function date(_date) {
-    
-    var minDate = new Date()
+
+    var minDate = new Date();
     minDate.setFullYear(2009);
     minDate.setMonth(0);
-    minDate.setDate(1)
+    minDate.setDate(1);
  
-    var maxDate = new Date()
+    var maxDate = new Date();
     maxDate.setFullYear(2009);
     maxDate.setMonth(11);
-    maxDate.setDate(31)
+    maxDate.setDate(31);
  
     var value = new Date();
     value.setFullYear(2009);
