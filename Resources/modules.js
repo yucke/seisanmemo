@@ -97,6 +97,22 @@ exports.row = function(_item) {
 };
 
 exports.date = function date(_date) {
+    
+    var minDate = new Date()
+    minDate.setFullYear(2009);
+    minDate.setMonth(0);
+    minDate.setDate(1)
+ 
+    var maxDate = new Date()
+    maxDate.setFullYear(2009);
+    maxDate.setMonth(11);
+    maxDate.setDate(31)
+ 
+    var value = new Date();
+    value.setFullYear(2009);
+    value.setMonth(0);
+    value.setDate(1);
+    
     var self = Ti.UI.createPicker({
         type:Ti.UI.PICKER_TYPE_DATE_AND_TIME,
         minDate:minDate,
