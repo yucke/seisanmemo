@@ -95,7 +95,7 @@ exports.row = function(_item) {
 	});
 	return self;
 };
-
+/*
 exports.date = function date(_name) {
 //↓デバッグ用コマンド
 Ti.API.log('DEBUG', '1');
@@ -136,4 +136,4 @@ return picker;
      // e.valueとして選択値が取得される。
 //});
 };
-
+*/
