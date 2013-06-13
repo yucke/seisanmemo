@@ -97,27 +97,49 @@ exports.row = function(_item) {
 };
 
 exports.date = function date() {
-
-    var minDate = new Date();
-    minDate.setFullYear(2009);
-    minDate.setMonth(0);
-    minDate.setDate(1);
- 
-    var maxDate = new Date();
-    maxDate.setFullYear(2009);
-    maxDate.setMonth(11);
-    maxDate.setDate(31);
- 
-    var value = new Date();
-    value.setFullYear(2009);
-    value.setMonth(0);
-    value.setDate(1);
-    
-    var self = Ti.UI.createPicker({
-        type:Ti.UI.PICKER_TYPE_DATE_AND_TIME,
-        minDate:minDate,
-        maxDate:maxDate,
-        value:value
+    var dateButton = Titanium.UI.createButton({
+        top : 10,
+        title : '生年月日を入力してください',
+        width : '80%',
+        color : '#000',
+        style : Titanium.UI.iPhone.SystemButtonStyle.BORDERED
     });
-    return self;
+    var maskWindow = Ti.UI.createWindow({
+        width : '100%',
+        height : '100%',
+        backgroundColor : '#000',
+        opacity : 0.7
+    });
+    var dateWindow = Ti.UI.createWindow({
+        height : Ti.UI.SIZE,
+        bottom : 0,
+        backgroundColor : '#fff',
+        layout : 'vertical'
+    });
+    var done = Titanium.UI.createButton({
+        title : '完了',
+        style : Titanium.UI.iPhone.SystemButtonStyle.DONE
+    });
+    done.addEventListener('click', function() {
+        maskWindow.close();
+        dateWindow.close();
+        if (selectedDate != null) {
+            dateButton.title = String.formatDate(selectedDate, 'long');
+        }
+    });
+    var spacer = Titanium.UI.createButton({
+        systemButton : Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+    });
+    var toolbar = Titanium.UI.createToolbar({
+        barColor : '#000',
+        items : [spacer, done]
+    });
+    dateWindow.add(toolbar);
+ 
+    dateWindow.add(birthPickerView);
+    dateButton.addEventListener('click', function() {
+        maskWindow.open();
+        dateWindow.open();
+    });
+    contentView.add(dateButton);
 };
