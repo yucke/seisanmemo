@@ -19,14 +19,14 @@ exports.renkei = function() {
 						SeisanNengetsu__c : ym
 					},
 					callback : function(data) {
-						seisansyo_no = data.records[0].Name;
+						seisansyo_no = data.records[0].Id;
 					},
 					onerror : function() {
 						alert('精算書登録失敗');
 					}
 				});
 			} else if (data.records.length == 1) {
-				seisansyo_no = data.records[0].Name;
+				seisansyo_no = data.records[0].Id;
 			}
 			Ti.API.info("SeisanshoNo :" + seisansyo_no);
 			//内訳登録
@@ -41,9 +41,9 @@ exports.renkei = function() {
 					Naiyo__c : '新宿 → 神田',
 					Day__c : '2013-06-24',
 					Biko__c : 'hoge'
-
 				},
 				callback : function(data) {
+					alert('精算書登録完了');
 				},
 				onerror : function() {
 					alert('明細部登録失敗');
