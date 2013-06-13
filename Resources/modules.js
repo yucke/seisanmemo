@@ -97,55 +97,42 @@ exports.row = function(_item) {
 };
 
 exports.date = function date() {
+//↓デバッグ用コマンド
 Ti.API.log('DEBUG', '1');
-    var dateButton = Titanium.UI.createButton({
-        top : 10,
-        title : '生年月日を入力してください',
-        width : '80%',
-        color : '#000',
-        style : Titanium.UI.iPhone.SystemButtonStyle.BORDERED
-    });
+
+var minDate = new Date()
+minDate.setFullYear(2009);
+minDate.setMonth(0);
+minDate.setDate(1)
+
 Ti.API.log('DEBUG', '2');
-    var maskWindow = Ti.UI.createWindow({
-        width : '100%',
-        height : '100%',
-        backgroundColor : '#000',
-        opacity : 0.7
-    });
-    var dateWindow = Ti.UI.createWindow({
-        height : Ti.UI.SIZE,
-        bottom : 0,
-        backgroundColor : '#fff',
-        layout : 'vertical'
-    });
+
+var maxDate = new Date()
+maxDate.setFullYear(2009);
+maxDate.setMonth(11);
+maxDate.setDate(31)
+
 Ti.API.log('DEBUG', '3');
-    var done = Titanium.UI.createButton({
-        title : '完了',
-        style : Titanium.UI.iPhone.SystemButtonStyle.DONE
-    });
+
+var value = new Date();
+value.setFullYear(2009);
+value.setMonth(0);
+value.setDate(1);
+
 Ti.API.log('DEBUG', '4');
-    done.addEventListener('click', function() {
-        maskWindow.close();
-        dateWindow.close();
-        if (selectedDate != null) {
-            dateButton.title = String.formatDate(selectedDate, 'long');
-        }
-    });
-    var spacer = Titanium.UI.createButton({
-        systemButton : Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
-    });
+
+var picker = Ti.UI.createPicker({
+    // typeとしてTi.UI.PICKER_TYPE_DATEを指定します。
+    type:Ti.UI.PICKER_TYPE_DATE,
+    minDate:minDate,
+    maxDate:maxDate,
+    value:value
+});
+
 Ti.API.log('DEBUG', '5');
-    var toolbar = Ti.UI.createToolbar({
-        barColor : '#000',
-        items : [spacer, done]
-    });
-Ti.API.log('DEBUG', '6');
-    dateWindow.add(toolbar);
-Ti.API.log('DEBUG', '7');
-    dateWindow.add(birthPickerView);
-    dateButton.addEventListener('click', function() {
-        maskWindow.open();
-        dateWindow.open();
-    });
-    contentView.add(dateButton);
+
+picker.addEventListener('change',function(e){
+     // e.valueとして選択値が取得される。
+});
 };
+
