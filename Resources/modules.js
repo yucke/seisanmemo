@@ -97,6 +97,7 @@ exports.row = function(_item) {
 };
 
 exports.date = function date() {
+alert("date1");
     var dateButton = Titanium.UI.createButton({
         top : 10,
         title : '生年月日を入力してください',
@@ -104,6 +105,7 @@ exports.date = function date() {
         color : '#000',
         style : Titanium.UI.iPhone.SystemButtonStyle.BORDERED
     });
+alert("date2");
     var maskWindow = Ti.UI.createWindow({
         width : '100%',
         height : '100%',
@@ -116,10 +118,12 @@ exports.date = function date() {
         backgroundColor : '#fff',
         layout : 'vertical'
     });
+alert("date3");
     var done = Titanium.UI.createButton({
         title : '完了',
         style : Titanium.UI.iPhone.SystemButtonStyle.DONE
     });
+alert("date4");
     done.addEventListener('click', function() {
         maskWindow.close();
         dateWindow.close();
@@ -130,12 +134,14 @@ exports.date = function date() {
     var spacer = Titanium.UI.createButton({
         systemButton : Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
     });
+alert("date5");
     var toolbar = Titanium.UI.createToolbar({
         barColor : '#000',
         items : [spacer, done]
     });
+alert("date6");
     dateWindow.add(toolbar);
- 
+alert("date7");
     dateWindow.add(birthPickerView);
     dateButton.addEventListener('click', function() {
         maskWindow.open();
