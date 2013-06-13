@@ -15,8 +15,10 @@ function DetailView() {
 		self.add(row);
 	}
 	fields[6] = mod.textArea(texts[6]);
+	fields[0] = mod.date(texts[0]);
 	self.add(fields[6]);
-
+    self.add(fields[0]);
+    
 	var bt1 = mod.button('登録');
 	bt1.addEventListener('click', function(e) {
 		var dialog = Titanium.UI.createOptionDialog();
@@ -67,7 +69,7 @@ function DetailView() {
 
 	self.addEventListener('itemSelected', function(e) {
 		id = e.selData.id;
-		fields[0].value = mod.date()//e.selData.date;
+		fields[0].value = e.selData.date;
 		fields[1].value = e.selData.ikisaki;
 		fields[2].value = e.selData.shudan;
 		fields[3].value = e.selData.from;

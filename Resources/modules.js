@@ -96,21 +96,21 @@ exports.row = function(_item) {
 	return self;
 };
 
-exports.date = function date() {
+exports.date = function date(_name) {
 //↓デバッグ用コマンド
 Ti.API.log('DEBUG', '1');
 
-var minDate = new Date()
+var minDate = new Date();
 minDate.setFullYear(2009);
 minDate.setMonth(0);
-minDate.setDate(1)
+minDate.setDate(1);
 
 Ti.API.log('DEBUG', '2');
 
-var maxDate = new Date()
+var maxDate = new Date();
 maxDate.setFullYear(2009);
 maxDate.setMonth(11);
-maxDate.setDate(31)
+maxDate.setDate(31);
 
 Ti.API.log('DEBUG', '3');
 
@@ -131,8 +131,9 @@ var picker = Ti.UI.createPicker({
 
 Ti.API.log('DEBUG', '5');
 
-picker.addEventListener('change',function(e){
+return picker;
+//picker.addEventListener('change',function(e){
      // e.valueとして選択値が取得される。
-});
+//});
 };
 
