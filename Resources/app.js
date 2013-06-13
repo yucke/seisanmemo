@@ -16,7 +16,6 @@ if (Ti.version < 1.8) {
 }
 // DBインストール
 require('db').createDb();
-var force = require('force');
 
 force.authorize({
 	success: function() {
