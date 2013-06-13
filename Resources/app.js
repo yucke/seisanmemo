@@ -16,24 +16,10 @@ if (Ti.version < 1.8) {
 }
 // DBインストール
 require('db').createDb();
+var osname = Ti.Platform.osname, version = Ti.Platform.version, height = Ti.Platform.displayCaps.platformHeight, width = Ti.Platform.displayCaps.platformWidth;
+//considering tablet to have one dimension over 900px - this is imperfect, so you should feel free to decide
+//yourself what you consider a tablet form factor for android
+var Window = require('ui/handheld/android/ApplicationWindow');
 
-force.authorize({
-	success: function() {
-		//If we're logged in, create a very simple accounts UI
-	var osname = Ti.Platform.osname, version = Ti.Platform.version, height = Ti.Platform.displayCaps.platformHeight, width = Ti.Platform.displayCaps.platformWidth;
-    Ti.API.info(force.ID);
-	//considering tablet to have one dimension over 900px - this is imperfect, so you should feel free to decide
-	//yourself what you consider a tablet form factor for android
-	var Window = require('ui/handheld/android/ApplicationWindow');
-
-	new Window().open();
-	},
-	error: function() {
-		alert('error');
-	},
-	cancel: function() {
-		alert('cancel');
-	}
-});
-
+new Window().open();
 
