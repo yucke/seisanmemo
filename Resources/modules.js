@@ -135,7 +135,7 @@ alert("date4");
         systemButton : Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
     });
 alert("date5");
-    var toolbar = Titanium.UI.createToolbar({
+    var toolbar = Ti.UI.createToolbar({
         barColor : '#000',
         items : [spacer, done]
     });
