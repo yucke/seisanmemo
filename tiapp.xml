@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-	<!-- Salesforce Configuration -->
+    <!-- Salesforce Configuration -->
     <property name="force.consumer.key" type="string">3MVG9y6x0357HlecqwwEPECN4Mz_L5VtKtk4Q.IdPvy9dFfHmKhlKAsgb9g60JX2TFcbHU2n4MZeisMYPB_y9</property>
     <property name="force.consumer.secret" type="string">7815579917038576854</property>
     <property name="acs-oauth-secret-production" type="string">1OJsEh5QadhsormhpncQncQiPnaH6Jfj</property>
@@ -10,13 +10,14 @@
     <property name="acs-oauth-key-development" type="string">Dcgb4uGbwaTufuEv3keYiYNAPnmfVoJa</property>
     <property name="acs-api-key-development" type="string">ckhMKLPDIO7CXhrCkd9K2s1FeMjMNEgS</property>
     <deployment-targets>
-        <target device="mobileweb">true</target>
+        <target device="tizen">false</target>
+        <target device="mobileweb">false</target>
         <target device="iphone">false</target>
         <target device="ipad">false</target>
         <target device="android">true</target>
         <target device="blackberry">false</target>
     </deployment-targets>
-    <sdk-version>3.0.0.GA</sdk-version>
+    <sdk-version>3.1.0.GA</sdk-version>
     <id>jp.co.nsysdes.seisanmemo</id>
     <name>seisanmemo</name>
     <version>1.0</version>

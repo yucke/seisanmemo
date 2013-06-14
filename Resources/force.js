@@ -231,7 +231,7 @@ exports.logout = function() {
 		xhr.send(null);
 	}
 };
-/////////////////////////////////////////////////////////
+
  exports.user = function(opts) {
 	// Setup the xhr object
 	var xhr = Ti.Network.createHTTPClient();
