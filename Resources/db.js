@@ -54,4 +54,17 @@ exports.deleteItem = function(_id) {
 exports.file = function() {
 	var file = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory + '/' + FILE_NAME);
 	return file;
-}; 
+};
+exports.deleteRows = function(_date) {
+	var mydb = Ti.Database.open(DATABASE_NAME);
+	var rows = mydb.execute('SELECT count(*) as cnt from seisan where date < ?', _date);
+	while (rows.isValidRow()) {
+		cnt = rows.fieldByName('cnt');
+		rows.next();
+	}
+	if(cnt > 0){
+		mydb.execute('delete from seisan where date < ?', _date);
+	}
+	mydb.close();
+	return cnt;
+};

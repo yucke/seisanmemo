@@ -45,8 +45,40 @@ function ApplicationWindow() {
 			});
 			dialog.show();
 		});
+		var deleteMenuItem = menu.add({
+			title : "データの一括削除",
+			icon : "item1.png"
+		});
+
+		deleteMenuItem.addEventListener("click", function(e) {
+			var dialog = Titanium.UI.createOptionDialog();
+			dialog.setTitle('先月までの精算データを一括削除しますがよろしいですか？');
+			dialog.setOptions(["OK", "CANCEL"]);
+
+			dialog.addEventListener('click', function(event) {
+				// OKボタンが押された場合
+				if (event.index == 0) {
+					// データ削除
+					var db = require('db');
+					// 月初の習得
+					var date = new Date();  
+					var year = date.getFullYear();  
+					var month = date.getMonth();  
+					// 今月の月初
+					var lastMonthFirstDate = new Date(year, month + 1, 0);
+					var cnt = db.deleteRows(lastMonthFirstDate);
+					alert('精算データを '+ cnt + ' 件削除しました。');
+					// リロード
+				};
+			});
+			dialog.addEventListener('close', function(e) {
+				masterView.fireEvent('updateList', {})
+			});
+			dialog.show();
+		});
 
 	};
+	
 
 	//construct UI
 	var masterView = new MasterView();
