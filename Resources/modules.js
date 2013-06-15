@@ -119,7 +119,7 @@ Ti.API.log('DEBUG', '3');
     value.setFullYear(2009);
     value.setMonth(0);
     value.setDate(1);
-    
+Ti.API.log('DEBUG', '4');    
     var picker = Ti.UI.createPicker({
         useSpinner: true,
         type:Ti.UI.PICKER_TYPE_DATE,
@@ -127,12 +127,12 @@ Ti.API.log('DEBUG', '3');
         maxDate:maxDate,
         value:value
     });
-    
+Ti.API.log('DEBUG', '5');
     // turn on the selection indicator (off by default)
     picker.selectionIndicator = true;
-    
+Ti.API.log('DEBUG', '6');
     win.add(picker);
-    
+Ti.API.log('DEBUG', '7');
     var label = Ti.UI.createLabel({
         text:'Choose a date',
         top:6,
@@ -141,13 +141,14 @@ Ti.API.log('DEBUG', '3');
         textAlign:'center',
         color:'white'
     });
+Ti.API.log('DEBUG', '8');
     win.add(label);
-    
+Ti.API.log('DEBUG', '9');
     picker.addEventListener('change',function(e)
     {
         label.text = e.value;
     });
-    
+Ti.API.log('DEBUG', '10');    
     var locale = false;
     var localebutton = Ti.UI.createButton({
         title:'Change locale',
@@ -155,17 +156,22 @@ Ti.API.log('DEBUG', '3');
         width:200,
         height:40
     });
+Ti.API.log('DEBUG', '11');
     localebutton.addEventListener('click', function() {
         if (!locale) {
+            Ti.API.log('DEBUG', '12');
             picker.setLocale('ru');
             locale = true;
         }
         else {
+            Ti.API.log('DEBUG', '13');
             locale = false;
             picker.setLocale(Titanium.Platform.locale);
         }
     });
+Ti.API.log('DEBUG', '14');
     win.add(localebutton);
-
+Ti.API.log('DEBUG', '15');
     return win;
+Ti.API.log('DEBUG', '16');
 }
