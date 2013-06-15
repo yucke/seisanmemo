@@ -9,7 +9,7 @@ function DetailView() {
 		var label = mod.lbl(texts[i]);
 		fields[i] = mod.textField1(texts[i]);
 		if ( i == 0)
-            fields[i] = mod.date();
+            fields[i] = mod.date(texts[0]);
 		if ( i == 5)
 			fields[i] = mod.textField2(texts[5]);
 		row.add(label);
