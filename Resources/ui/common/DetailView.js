@@ -8,6 +8,8 @@ function DetailView() {
 		var row = mod.rowview();
 		var label = mod.lbl(texts[i]);
 		fields[i] = mod.textField1(texts[i]);
+		if ( i == 0)
+            fields[i] = mod.date();
 		if ( i == 5)
 			fields[i] = mod.textField2(texts[5]);
 		row.add(label);
@@ -15,9 +17,7 @@ function DetailView() {
 		self.add(row);
 	}
 	fields[6] = mod.textArea(texts[6]);
-	//fields[0] = mod.date(texts[0]);
 	self.add(fields[6]);
-    //self.add(fields[0]);
     
 	var bt1 = mod.button('登録');
 	bt1.addEventListener('click', function(e) {
