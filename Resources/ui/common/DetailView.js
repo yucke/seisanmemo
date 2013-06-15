@@ -9,7 +9,9 @@ function DetailView() {
 		var label = mod.lbl(texts[i]);
 		fields[i] = mod.textField1(texts[i]);
         if ( i == 0)
+            Ti.API.log('DEBUG', '1');
             fields[i] = mod.date();
+            Ti.API.log('DEBUG', '0');
 		if ( i == 5)
 			fields[i] = mod.textField2(texts[5]);
 		row.add(label);

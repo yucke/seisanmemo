@@ -98,9 +98,11 @@ exports.row = function(_item) {
 
 
 exports.date = function(_args) {
+Ti.API.log('DEBUG', '2');
     var win = Ti.UI.createWindow({
-//        title:_args.title
+        title:_args.title
     });
+Ti.API.log('DEBUG', '3');
     win.backgroundColor = 'black';
     
     var minDate = new Date();
