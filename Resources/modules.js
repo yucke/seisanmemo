@@ -99,7 +99,7 @@ exports.row = function(_item) {
 
 exports.date = function(_args) {
     var win = Ti.UI.createWindow({
-        title:_args.title
+//        title:_args.title
     });
     win.backgroundColor = 'black';
     
