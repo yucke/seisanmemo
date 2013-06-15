@@ -97,10 +97,10 @@ exports.row = function(_item) {
 };
 
 
-exports.date = function(_args) {
+exports.date = function() {
 Ti.API.log('DEBUG', '2');
     var win = Ti.UI.createWindow({
-        title:_args.title
+        title:'DATE'
     });
 Ti.API.log('DEBUG', '3');
     win.backgroundColor = 'black';
