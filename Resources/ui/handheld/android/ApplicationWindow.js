@@ -1,6 +1,6 @@
 function ApplicationWindow() {
 	//declare module dependencies
-	var MasterView = require('ui/common/MasterView'), DetailView = require('ui/common/DetailView');
+	var MasterView = require('ui/common/MasterView'), DetailView = require('ui/common/DetailView'), Batch = require('ui/common/Batch');
 	;
 
 	//create object instance
@@ -31,7 +31,7 @@ function ApplicationWindow() {
 					
 					force.authorize({
 						success : function() {
-							require('ui/common/Batch').renkei();
+							var Batch = require('ui/common/Batch').renkei();
 						},
 						error : function() {
 							alert('認証エラー');
@@ -67,8 +67,9 @@ function ApplicationWindow() {
 					// 今月の月初
 					var lastMonthFirstDate = new Date(year, month + 1, 0);
 					var cnt = db.deleteRows(lastMonthFirstDate);
-					alert('精算データを '+ cnt + ' 件削除しました。');
 					// リロード
+					self.fireEvent('callUpdateList', {})
+					alert('精算データを '+ cnt + ' 件削除しました。');
 				};
 			});
 			dialog.addEventListener('close', function(e) {
@@ -101,6 +102,10 @@ function ApplicationWindow() {
 		detailContainerWindow.add(detailView);
 		detailView.fireEvent('itemSelected', e);
 		detailContainerWindow.open();
+	});
+	
+	self.addEventListener('callUpdateList', function(e) {
+		masterView.fireEvent('updateList', e);
 	});
 
 	return self;
