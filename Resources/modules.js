@@ -137,11 +137,11 @@ exports.dateField = function() {
             type : Ti.UI.PICKER_TYPE_DATE,
             minDate : minDate,
             maxDate : maxDate,
-            value : dateTrance(self.value)
+            value : str2date(self.value)
         });
 
         picker.addEventListener('DateSelected', function(e) {
-            self.value = picker.value;
+            self.value = date2str(picker.value);
         });
 
         Ti.API.log('DEBUG', '4________'+picker.value);
@@ -171,7 +171,15 @@ exports.dateField = function() {
      */
     return self;
 }
-function dateTrance(datestr) {
+function date2str(date){
+    var str = '';
+    var Year = date.getFullYear();
+    var Month = ('00' + (date.getMonth()+1)).slice(-2);
+    var Day = ('00' + (date.getDate())).slice(-2);
+    str =(Year + Month + Day);
+    return str;
+}
+function str2date(datestr) {
     // 正規表現による書式チェック
     if (!datestr.match(/^\d{4}\d{2}\d{2}$/)) {
         return new Date();
