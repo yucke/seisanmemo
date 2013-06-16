@@ -10,7 +10,7 @@ function DetailView() {
 		fields[i] = mod.textField1(texts[i]);
         if ( i == 0){
             Ti.API.log('DEBUG', '1');
-            fields[i] = mod.date();
+            fields[i] = mod.datefield(new Date());
             Ti.API.log('DEBUG', '0');
         }
 		if ( i == 5){
