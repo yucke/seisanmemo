@@ -121,7 +121,6 @@ exports.dateField = function() {
         win.backgroundColor = 'black';
 
         var today = new Date();
-
         var minDate = new Date();
         minDate.setFullYear(today.getFullYear() - 1);
         minDate.setMonth(0);
@@ -144,12 +143,8 @@ exports.dateField = function() {
             self.value = date2str(picker.value);
         });
 
-        Ti.API.log('DEBUG', '4________'+picker.value);
-        // turn on the selection indicator (off by default)
         picker.selectionIndicator = true;
-        Ti.API.log('DEBUG', '5________'+picker.value);
         win.add(picker);
-        Ti.API.log('DEBUG', '6________');
         //button
         var bt1 = Titanium.UI.createButton({
             title : '決定',
@@ -164,11 +159,6 @@ exports.dateField = function() {
         win.add(bt1);
         win.open();
     });
-    Ti.API.log('DEBUG', '5');
-    /*    self.addEventListener('DateSelected',function(e){
-     self.value = picker.value;
-     });
-     */
     return self;
 }
 function date2str(date){
@@ -194,7 +184,6 @@ function str2date(datestr) {
         if (isNaN(vDt)) {
             return new Date();
         } else if (vDt.getFullYear() == vYear && vDt.getMonth() == vMonth && vDt.getDate() == vDay) {
-    Ti.API.log('DEBUG', 'dateTrance___________'+vDt);
             return vDt;
         } else {
             return new Date();
@@ -202,5 +191,4 @@ function str2date(datestr) {
     } else {
         return new Date();
     }
-
 }
