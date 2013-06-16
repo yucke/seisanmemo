@@ -96,8 +96,7 @@ exports.row = function(_item) {
     return self;
 };
 
-exports.dateField = function(_date) {
-
+exports.dateField = function() {
     var self = Ti.UI.createTextField({
         hintText : 'YYYYMMDD',
         color : '#336699',
@@ -107,60 +106,93 @@ exports.dateField = function(_date) {
         returnKeyType : Titanium.UI.RETURNKEY_DEFAULT,
         borderStyle : Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
     });
-
     self.addEventListener('click', function(e) {
-
+        Ti.API.log('DEBUG', '2');
         Ti.API.log('DEBUG', 'click_event');
         var win = Ti.UI.createWindow({
-            title : 'DATE'
+            modal : true,
+            modalTransitionStyle : Ti.UI.iPhone.MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL,
+            modalStyle : Ti.UI.iPhone.MODAL_PRESENTATION_FORMSHEET,
+            title : 'DATE',
+            layout : 'vertical'
         });
+
         Ti.API.log('DEBUG', '3');
         win.backgroundColor = 'black';
 
+        var today = new Date();
+
         var minDate = new Date();
-        minDate.setFullYear(2009);
+        minDate.setFullYear(today.getFullYear() - 1);
         minDate.setMonth(0);
         minDate.setDate(1);
 
         var maxDate = new Date();
-        maxDate.setFullYear(2009);
+        maxDate.setFullYear(today.getFullYear() + 1);
         maxDate.setMonth(11);
         maxDate.setDate(31);
 
-        var value = new Date();
-        value.setFullYear(2009);
-        value.setMonth(0);
-        value.setDate(1);
-        Ti.API.log('DEBUG', '4');
         var picker = Ti.UI.createPicker({
             useSpinner : true,
             type : Ti.UI.PICKER_TYPE_DATE,
             minDate : minDate,
             maxDate : maxDate,
-            value : value
+            value : dateTrance(self.value)
         });
-        Ti.API.log('DEBUG', '5');
+
+        picker.addEventListener('DateSelected', function(e) {
+            self.value = picker.value;
+        });
+
+        Ti.API.log('DEBUG', '4________'+picker.value);
         // turn on the selection indicator (off by default)
         picker.selectionIndicator = true;
-        Ti.API.log('DEBUG', '6');
+        Ti.API.log('DEBUG', '5________'+picker.value);
         win.add(picker);
-        Ti.API.log('DEBUG', '7');
-        var label = Ti.UI.createLabel({
-            text : 'Choose a date',
-            top : 6,
-            width : 'auto',
-            height : 'auto',
-            textAlign : 'center',
-            color : 'white'
+        Ti.API.log('DEBUG', '6________');
+        //button
+        var bt1 = Titanium.UI.createButton({
+            title : '決定',
+            color : 'black',
+            height : Ti.UI.SIZE,
+            width : Ti.UI.SIZE
         });
-        Ti.API.log('DEBUG', '8');
-        win.add(label);
-        Ti.API.log('DEBUG', '9');
-        picker.addEventListener('change', function(e) {
-            label.text = e.value;
+        bt1.addEventListener('click', function(e) {
+            picker.fireEvent('DateSelected', e);
+            win.close();
         });
+        win.add(bt1);
+        win.open();
     });
-
-    Ti.API.log('DEBUG', '15');
+    Ti.API.log('DEBUG', '5');
+    /*    self.addEventListener('DateSelected',function(e){
+     self.value = picker.value;
+     });
+     */
     return self;
+}
+function dateTrance(datestr) {
+    // 正規表現による書式チェック
+    if (!datestr.match(/^\d{4}\d{2}\d{2}$/)) {
+        return new Date();
+    }
+    var vYear = datestr.substr(0, 4) - 0;
+    var vMonth = datestr.substr(4, 2) - 1;
+    // Javascriptは、0-11で表現
+    var vDay = datestr.substr(6, 2) - 0;
+    // 月,日の妥当性チェック
+    if (vMonth >= 0 && vMonth <= 11 && vDay >= 1 && vDay <= 31) {
+        var vDt = new Date(vYear, vMonth, vDay);
+        if (isNaN(vDt)) {
+            return new Date();
+        } else if (vDt.getFullYear() == vYear && vDt.getMonth() == vMonth && vDt.getDate() == vDay) {
+    Ti.API.log('DEBUG', 'dateTrance___________'+vDt);
+            return vDt;
+        } else {
+            return new Date();
+        }
+    } else {
+        return new Date();
+    }
+
 }
