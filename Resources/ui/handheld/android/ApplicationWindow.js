@@ -72,6 +72,7 @@ function ApplicationWindow() {
 					var cnt = db.deleteRows(lastMonthFirstDate);
 					alert('精算データを '+ cnt + ' 件削除しました。');
 					// リロード
+					self.fireEvent('callUpdateList', {})
 				};
 			});
 			dialog.addEventListener('close', function(e) {
@@ -104,6 +105,10 @@ function ApplicationWindow() {
 		detailContainerWindow.add(detailView);
 		detailView.fireEvent('itemSelected', e);
 		detailContainerWindow.open();
+	});
+	
+	self.addEventListener('callUpdateList', function(e) {
+		masterView.fireEvent('updateList', e);
 	});
 
 	return self;
