@@ -14,15 +14,15 @@ function ApplicationWindow() {
 	activity.onCreateOptionsMenu = function(e) {
 
 		var menu = e.menu;
-		var menuItem = menu.add({
-			title : "Item 1",
+		var renkeiItem = menu.add({
+			title : "SFDC連携",
 			icon : "item1.png"
 		});
 
-		menuItem.addEventListener("click", function(e) {
+		renkeiItem.addEventListener("click", function(e) {
 			var dialog = Titanium.UI.createOptionDialog();
 			dialog.setTitle('Salesforce.com連携しますか？');
-			dialog.setOptions(["OK", "CANCEL"]);
+			dialog.setOptions(["精算書データ送信","ログアウト", "CANCEL"]);
 
 			dialog.addEventListener('click', function(event) {
 
@@ -41,7 +41,10 @@ function ApplicationWindow() {
 						}
 					});
 
-				};
+				}else　if　(event.index == 1) {
+					var force = require('force');					
+					force.logout();
+				}
 			});
 			dialog.show();
 		});
@@ -67,9 +70,8 @@ function ApplicationWindow() {
 					// 今月の月初
 					var lastMonthFirstDate = new Date(year, month + 1, 0);
 					var cnt = db.deleteRows(lastMonthFirstDate);
-					// リロード
-					self.fireEvent('callUpdateList', {})
 					alert('精算データを '+ cnt + ' 件削除しました。');
+					// リロード
 				};
 			});
 			dialog.addEventListener('close', function(e) {
@@ -102,10 +104,6 @@ function ApplicationWindow() {
 		detailContainerWindow.add(detailView);
 		detailView.fireEvent('itemSelected', e);
 		detailContainerWindow.open();
-	});
-	
-	self.addEventListener('callUpdateList', function(e) {
-		masterView.fireEvent('updateList', e);
 	});
 
 	return self;
