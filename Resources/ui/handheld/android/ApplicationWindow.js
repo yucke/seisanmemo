@@ -1,6 +1,6 @@
 function ApplicationWindow() {
 	//declare module dependencies
-	var MasterView = require('ui/common/MasterView'), DetailView = require('ui/common/DetailView');
+	var MasterView = require('ui/common/MasterView'), DetailView = require('ui/common/DetailView'), Batch = require('ui/common/Batch');
 	;
 
 	//create object instance
@@ -14,15 +14,15 @@ function ApplicationWindow() {
 	activity.onCreateOptionsMenu = function(e) {
 
 		var menu = e.menu;
-		var menuItem = menu.add({
-			title : "Item 1",
+		var renkeiItem = menu.add({
+			title : "SFDC連携",
 			icon : "item1.png"
 		});
 
-		menuItem.addEventListener("click", function(e) {
+		renkeiItem.addEventListener("click", function(e) {
 			var dialog = Titanium.UI.createOptionDialog();
 			dialog.setTitle('Salesforce.com連携しますか？');
-			dialog.setOptions(["OK", "CANCEL"]);
+			dialog.setOptions(["精算書データ送信","ログアウト", "CANCEL"]);
 
 			dialog.addEventListener('click', function(event) {
 
@@ -31,7 +31,7 @@ function ApplicationWindow() {
 					
 					force.authorize({
 						success : function() {
-							require('ui/common/Batch').renkei();
+							var Batch = require('ui/common/Batch').renkei();
 						},
 						error : function() {
 							alert('認証エラー');
@@ -41,12 +41,48 @@ function ApplicationWindow() {
 						}
 					});
 
+				}else　if　(event.index == 1) {
+					var force = require('force');					
+					force.logout();
+				}
+			});
+			dialog.show();
+		});
+		var deleteMenuItem = menu.add({
+			title : "データの一括削除",
+			icon : "item1.png"
+		});
+
+		deleteMenuItem.addEventListener("click", function(e) {
+			var dialog = Titanium.UI.createOptionDialog();
+			dialog.setTitle('先月までの精算データを一括削除しますがよろしいですか？');
+			dialog.setOptions(["OK", "CANCEL"]);
+
+			dialog.addEventListener('click', function(event) {
+				// OKボタンが押された場合
+				if (event.index == 0) {
+					// データ削除
+					var db = require('db');
+					// 月初の習得
+					var date = new Date();  
+					var year = date.getFullYear();  
+					var month = date.getMonth();  
+					// 今月の月初
+					var lastMonthFirstDate = new Date(year, month + 1, 0);
+					var cnt = db.deleteRows(lastMonthFirstDate);
+					alert('精算データを '+ cnt + ' 件削除しました。');
+					// リロード
+					self.fireEvent('callUpdateList', {})
 				};
+			});
+			dialog.addEventListener('close', function(e) {
+				masterView.fireEvent('updateList', {})
 			});
 			dialog.show();
 		});
 
 	};
+	
 
 	//construct UI
 	var masterView = new MasterView();
@@ -69,6 +105,10 @@ function ApplicationWindow() {
 		detailContainerWindow.add(detailView);
 		detailView.fireEvent('itemSelected', e);
 		detailContainerWindow.open();
+	});
+	
+	self.addEventListener('callUpdateList', function(e) {
+		masterView.fireEvent('updateList', e);
 	});
 
 	return self;
