@@ -69,7 +69,8 @@ function ApplicationWindow() {
 					var month = date.getMonth();  
 					// 今月の月初
 					var lastMonthFirstDate = new Date(year, month + 1, 0);
-					var cnt = db.deleteRows(lastMonthFirstDate);
+					var tempMonth = "0" + (lastMonthFirstDate.getMonth() + 1);
+					var cnt = db.deleteRows(lastMonthFirstDate.getFullYear() + tempMonth.slice(-2) );
 					alert('精算データを '+ cnt + ' 件削除しました。');
 					// リロード
 					self.fireEvent('callUpdateList', {})
