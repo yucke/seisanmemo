@@ -102,13 +102,11 @@ exports.dateField = function() {
         color : '#336699',
         width : '60%',
         height : Ti.UI.SIZE,
-        keyboardType : Titanium.UI.KEYBOARD_DEFAULT,
         returnKeyType : Titanium.UI.RETURNKEY_DEFAULT,
         borderStyle : Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
     });
     self.addEventListener('click', function(e) {
-        Ti.API.log('DEBUG', '2');
-        Ti.API.log('DEBUG', 'click_event');
+        self.blue();
         var win = Ti.UI.createWindow({
             modal : true,
             modalTransitionStyle : Ti.UI.iPhone.MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL,
@@ -117,7 +115,6 @@ exports.dateField = function() {
             layout : 'vertical'
         });
 
-        Ti.API.log('DEBUG', '3');
         win.backgroundColor = 'black';
 
         var today = new Date();
