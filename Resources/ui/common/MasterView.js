@@ -21,13 +21,7 @@ function MasterView() {
 	//DatailViewから戻った場合、情報を最新化する
 	self.addEventListener('updateList', function(e) {
 		table.data = loadData();
-
 	});
-
-
-
-
-
 	return self;
 };
 
@@ -35,18 +29,19 @@ function MasterView() {
 function loadData(){
 	//some dummy data for our table view
 
-
 	var tableData = [];
-	var items =    　{
-	id : 'insert',
-	date : today(),
-	ikisaki : '',
-	shudan : '',
-	from : '',
-	to : '',
-	kingaku : 0,
-	biko : ''
-	};
+
+    var items =     　{
+        id : 'insert',
+        date : today(),
+        ikisaki : '',
+        shudan : '',
+        from : '',
+        to : '',
+        kingaku : 0,
+        biko : ''
+    };
+
 
 	var　mod = require('modules');
 	var row = mod.row(items);
@@ -61,13 +56,12 @@ function loadData(){
 
 	return tableData;
 
-};
+}
 module.exports = MasterView;
 function today(){
-	var date = new Date();
-	var Year = date.getFullYear();
+    var date = new Date();
+    var Year = date.getFullYear();
     var Month = ('00' + (date.getMonth()+1)).slice(-2);
     var Day = ('00' + (date.getDate())).slice(-2);
     return (Year + Month + Day);
-	return
 }
