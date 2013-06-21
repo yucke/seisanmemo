@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="seisanmemo">せいさん！</string>
+	<string name="masterView">一覧</string>
+	<string name="detailView">編集</string>
+	<string name="select">値を入力してください。</string>
+	<string name="youEntered">入力: %s</string>
+</resources>

@@ -37,10 +37,9 @@ function loadData(){
 
 
 	var tableData = [];
-
 	var items =    　{
 	id : 'insert',
-	date : new Date(),
+	date : today(),
 	ikisaki : '',
 	shudan : '',
 	from : '',
@@ -64,3 +63,11 @@ function loadData(){
 
 };
 module.exports = MasterView;
+function today(){
+	var date = new Date();
+	var Year = date.getFullYear();
+    var Month = ('00' + (date.getMonth()+1)).slice(-2);
+    var Day = ('00' + (date.getDate())).slice(-2);
+    return (Year + Month + Day);
+	return
+}

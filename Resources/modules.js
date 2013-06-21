@@ -106,7 +106,7 @@ exports.dateField = function() {
         borderStyle : Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
     });
     self.addEventListener('click', function(e) {
-        self.blue();
+        self.blur();
         var win = Ti.UI.createWindow({
             modal : true,
             modalTransitionStyle : Ti.UI.iPhone.MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL,

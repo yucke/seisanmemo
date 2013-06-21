@@ -5,7 +5,7 @@ function ApplicationWindow() {
 
 	//create object instance
 	var self = Ti.UI.createWindow({
-		title : 'list',
+		title : '精算一覧',
 		exitOnClose : true,
 		navBarHidden : false,
 		backgroundColor : '#ffffff'
@@ -15,23 +15,22 @@ function ApplicationWindow() {
 
 		var menu = e.menu;
 		var renkeiItem = menu.add({
-			title : "SFDC連携",
-			icon : "item1.png"
+			title : "SFDC連携"
 		});
 
 		renkeiItem.addEventListener("click", function(e) {
 			var dialog = Titanium.UI.createOptionDialog();
 			dialog.setTitle('Salesforce.com連携しますか？');
-			dialog.setOptions(["精算書データ送信","ログアウト", "CANCEL"]);
+			dialog.setOptions(["先月分データ送信","今月分データ送信","ログアウト", "キャンセル"]);
 
 			dialog.addEventListener('click', function(event) {
 
-				if (event.index == 0) {
+				if (event.index < 2){
 					var force = require('force');
-					
+					var ym = getYM(event.index);
 					force.authorize({
 						success : function() {
-							var Batch = require('ui/common/Batch').renkei();
+							var Batch = require('ui/common/Batch').renkei(ym);
 						},
 						error : function() {
 							alert('認証エラー');
@@ -41,7 +40,7 @@ function ApplicationWindow() {
 						}
 					});
 
-				}else　if　(event.index == 1) {
+				}else　if　(event.index == 2) {
 					var force = require('force');					
 					force.logout();
 				}
@@ -49,8 +48,7 @@ function ApplicationWindow() {
 			dialog.show();
 		});
 		var deleteMenuItem = menu.add({
-			title : "データの一括削除",
-			icon : "item1.png"
+			title : "データの一括削除"	
 		});
 
 		deleteMenuItem.addEventListener("click", function(e) {
@@ -93,7 +91,7 @@ function ApplicationWindow() {
 		//create detail view container
 		var detailView = new DetailView();
 		var detailContainerWindow = Ti.UI.createWindow({
-			title : 'Details',
+			title : '編集',
 			navBarHidden : false,
 			backgroundColor : '#ffffff'
 		});
@@ -115,3 +113,12 @@ function ApplicationWindow() {
 };
 
 module.exports = ApplicationWindow;
+
+//当年月をYYYYMM形式で返す。引数0の場合先月が返る
+function getYM(day) {
+    var today = new Date();
+    var dt = new Date(today.getFullYear(), today.getMonth(), day);
+    Ti.API.info(dt);
+    var month = ('00' + (dt.getMonth()+1)).slice(-2);
+    return dt.getFullYear() + month;
+};

@@ -163,12 +163,10 @@ exports.logout = function() {
 			info(JSON.stringify(xhr));
 			if (Number(xhr.status) >= 200 && Number(xhr.status) < 300) {
 				opts.callback && opts.callback(JSON.parse(this.responseText));
-			}
-			else {
+			}else {
 				if (opts.onerror) {
 					opts.onerror();
-				}
-				else {
+				} else {
 					error('Error during Force.com request');
 					//TODO: srsly.  Need moar error handling.
 				}
@@ -195,8 +193,7 @@ exports.logout = function() {
 			alert('Session expired - please log in.');
 			exports.logout();
 			exports.authorize();
-		}
-		else {
+		}else {
 			opts.onerror && opts.onerror();
 			Ti.API.info(xhr.responseText);
 		}
@@ -207,8 +204,7 @@ exports.logout = function() {
 	info(fullURL);
 	if(opts.type) {
 		xhr.open(opts.type, fullURL);	
-	} 
-	else {
+	} else {
 		xhr.open('GET', fullURL);
 	}
 
@@ -226,8 +222,7 @@ exports.logout = function() {
     if(opts.data) {
 		// send the data
         xhr.send(JSON.stringify(opts.data));
-	} 
-	else {
+	} else {
 		xhr.send(null);
 	}
 };
@@ -249,8 +244,7 @@ exports.logout = function() {
 			else {
 				if (opts.onerror) {
 					opts.onerror();
-				}
-				else {
+				}else {
 					error('Error during Force.com request');
 					//TODO: srsly.  Need moar error handling.
 				}
@@ -277,8 +271,7 @@ exports.logout = function() {
 			alert('Session expired - please log in.');
 			exports.logout();
 			exports.authorize();
-		}
-		else {
+		}else {
 			opts.onerror && opts.onerror();
 			Ti.API.info(xhr.responseText);
 		}
@@ -301,8 +294,7 @@ exports.logout = function() {
     if(opts.data) {
 		// send the data
         xhr.send(JSON.stringify(opts.data));
-	} 
-	else {
+	} else {
 		xhr.send(null);
 	}
 };

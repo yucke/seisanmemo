@@ -4,12 +4,12 @@ exports.createDb = function() {
 	Ti.Database.install('seisan.sqlite', DATABASE_NAME);
 };
 
-exports.selectItems = function() {
+exports.selectItems = function(_where) {
 	var retData = [];
 	var db = Ti.Database.open(DATABASE_NAME);
 	db.execute('CREATE TABLE IF NOT EXISTS seisan (id text, date real, ikisaki text, shudan text,fromplace text,toplace　text, kingaku integer, biko text )');
 
-	var rows = db.execute('SELECT * FROM seisan ORDER BY date;');
+	var rows = db.execute('SELECT * FROM seisan ' + ( _where ? _where : "" ) + ' ORDER BY date;');
 
 	while (rows.isValidRow()) {
 		retData.push({
@@ -62,9 +62,9 @@ exports.deleteRows = function(_date) {
 		cnt = rows.fieldByName('cnt');
 		rows.next();
 	}
-	if(cnt > 0){
+	if (cnt > 0) {
 		mydb.execute('delete from seisan where date < ?', _date);
 	}
 	mydb.close();
 	return cnt;
-};
+}; 
